@@ -15,16 +15,18 @@
  */
 package org.kie.kogito.custom.stub;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Date;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Path("/greeting")
 public class GreetingResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(GreetingResource.class);
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Greetings hello() {

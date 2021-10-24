@@ -1,0 +1,8 @@
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/TestData.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/TestMetrics.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/BenchmarkRunner.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/BenchmarkService.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/Stats.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/OrderItem.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/Execution.java
+/home/ubuntu/kogito-benchmark/test-clients/quarkus-client/src/main/java/com/redhat/fsi/kogito/benchmark/BenchmarkResource.java
