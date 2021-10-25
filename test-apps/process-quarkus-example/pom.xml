@@ -11,10 +11,10 @@
   <name>Kogito Example :: Process and Quarkus</name>
   <description>Order management service</description>
   <properties>
-    <quarkus-plugin.version>2.1.0.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.4.0.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.1.0.Final</quarkus.platform.version>
+    <quarkus.platform.version>2.4.0.Final</quarkus.platform.version>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <maven.compiler.source>11</maven.compiler.source>
@@ -22,7 +22,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
-    <quarkus.profile>default</quarkus.profile>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -36,10 +35,6 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-<!--    <dependency>-->
-<!--      <groupId>io.quarkus</groupId>-->
-<!--      <artifactId>quarkus-smallrye-metrics</artifactId>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-kubernetes</artifactId>
@@ -47,14 +42,6 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-container-image-jib</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-monitoring-prometheus</artifactId>
     </dependency>
     <dependency>
       <groupId>org.kie.kogito</groupId>
@@ -99,28 +86,19 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-health</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-mongodb-client</artifactId>
+      <!-- <version>2.3.0.Final</version> -->
+    </dependency>
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-addons-persistence-mongodb</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <finalName>${project.artifactId}</finalName>
     <plugins>
-      <plugin>
-        <groupId>com.coderplus.maven.plugins</groupId>
-        <artifactId>copy-rename-maven-plugin</artifactId>
-        <version>1.0</version>
-        <executions>
-          <execution>
-            <id>copy-file</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <sourceFile>src/main/resources/application-${quarkus.profile}.properties</sourceFile>
-              <destinationFile>src/main/resources/application.properties</destinationFile>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
@@ -155,81 +133,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>mongo</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>mongo</name>
-        </property>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>io.quarkus</groupId>
-          <artifactId>quarkus-mongodb-client</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>org.kie.kogito</groupId>
-          <artifactId>kogito-addons-persistence-mongodb</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
-      <id>infinispan</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>infinispan</name>
-        </property>
-      </activation>
-      <properties>
-        <enable.resource.infinispan>true</enable.resource.infinispan>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>io.quarkus</groupId>
-          <artifactId>quarkus-infinispan-client</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>org.kie.kogito</groupId>
-          <artifactId>kogito-addons-persistence-infinispan</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
-      <id>events</id>
-      <activation>
-        <property>
-          <name>events</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <systemPropertyVariables>
-                <enable.resource.kafka>true</enable.resource.kafka>
-              </systemPropertyVariables>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-      <properties>
-        <enable.resource.kafka>true</enable.resource.kafka>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.kie.kogito</groupId>
-          <artifactId>kogito-addons-quarkus-events-process</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>io.quarkus</groupId>
-          <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
 </project>
