@@ -84,7 +84,7 @@ public class BenchmarkRunner {
                     long index = itemsCounter.incrementAndGet();
                     Execution execution = stats.startOne(index);
                     try {
-                        logger.info("Executing: {}", index);
+//                        logger.info("Executing: {}", index);
                         executorOfType().execute();
                         execution.stop();
                     } catch (Exception e) {
