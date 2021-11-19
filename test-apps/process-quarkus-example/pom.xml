@@ -38,6 +38,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-addons-quarkus-events-mongodb</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-kubernetes</artifactId>
     </dependency>
@@ -95,7 +100,7 @@
     </dependency>
     <dependency>
       <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-persistence-mongodb</artifactId>
+      <artifactId>kogito-addons-quarkus-persistence-mongodb</artifactId>
     </dependency>
   </dependencies>
   <build>
